@@ -1,143 +1,162 @@
-// Typing animation
-const phrases = [
-  'Software Engineer',
-  'Full-Stack Developer',
-  'Mobile Developer',
-  'Web Architect',
-];
+'use strict';
 
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typedEl = document.getElementById('typed');
+/* ── CUSTOM CURSOR ── */
+const cursorDot  = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+let ringX = 0, ringY = 0, dotX = 0, dotY = 0;
 
-function type() {
-  const current = phrases[phraseIndex];
+if (window.matchMedia('(hover: hover)').matches) {
+  document.addEventListener('mousemove', (e) => {
+    dotX = e.clientX; dotY = e.clientY;
+    cursorDot.style.left  = dotX + 'px';
+    cursorDot.style.top   = dotY + 'px';
+  }, { passive: true });
 
-  if (isDeleting) {
-    typedEl.textContent = current.substring(0, charIndex - 1);
-    charIndex--;
-  } else {
-    typedEl.textContent = current.substring(0, charIndex + 1);
-    charIndex++;
+  // Ring lags behind slightly for a fluid feel
+  function animateRing() {
+    ringX += (dotX - ringX) * 0.12;
+    ringY += (dotY - ringY) * 0.12;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top  = ringY + 'px';
+    requestAnimationFrame(animateRing);
   }
+  animateRing();
 
-  if (!isDeleting && charIndex === current.length) {
-    setTimeout(() => { isDeleting = true; }, 2200);
-    return;
-  }
-  if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    phraseIndex = (phraseIndex + 1) % phrases.length;
-  }
-
-  setTimeout(type, isDeleting ? 45 : 90);
+  // Expand ring on interactive elements
+  const hoverEls = document.querySelectorAll('a, button, [role="button"], .magnetic, .pcard, .tech-item');
+  hoverEls.forEach(el => {
+    el.addEventListener('mouseenter', () => cursorRing.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovered'));
+  });
 }
 
-type();
+/* ── TYPING ANIMATION ── */
+const roles = ['Software Engineer', 'Full-Stack Developer', 'Mobile Developer', '.NET Architect', 'Open-Source Builder'];
+let rIdx = 0, cIdx = 0, deleting = false;
+const typedEl = document.getElementById('typed-text');
 
-// Navbar scroll effect
+function typeLoop() {
+  const word = roles[rIdx];
+  typedEl.textContent = deleting ? word.slice(0, cIdx - 1) : word.slice(0, cIdx + 1);
+  deleting ? cIdx-- : cIdx++;
+
+  if (!deleting && cIdx === word.length) { setTimeout(() => { deleting = true; }, 2400); return; }
+  if (deleting && cIdx === 0) { deleting = false; rIdx = (rIdx + 1) % roles.length; }
+  setTimeout(typeLoop, deleting ? 42 : 88);
+}
+typeLoop();
+
+/* ── NAVBAR SCROLL ── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
-// Mobile menu helpers
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileClose = document.getElementById('mobile-close');
+/* ── MOBILE NAVIGATION ── */
+const hamburger        = document.getElementById('hamburger');
+const mobileNav        = document.getElementById('mobile-nav');
+const mobileNavClose   = document.getElementById('mobile-nav-close');
+const mobileNavBackdrop= document.getElementById('mobile-nav-backdrop');
 
-function getFocusable(container) {
-  return Array.from(container.querySelectorAll(
-    'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-  ));
+function getFocusable(el) {
+  return [...el.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')];
 }
 
-function openMenu() {
-  mobileMenu.classList.add('open');
+function openNav() {
+  mobileNav.classList.add('open');
+  mobileNavBackdrop.classList.add('open');
+  hamburger.classList.add('open');
   hamburger.setAttribute('aria-expanded', 'true');
-  // Move focus to close button
-  mobileClose.focus();
+  hamburger.setAttribute('aria-label', 'Close navigation menu');
+  // Focus first link
+  const first = getFocusable(mobileNav)[0];
+  if (first) setTimeout(() => first.focus(), 50);
 }
 
-function closeMenu() {
-  mobileMenu.classList.remove('open');
+function closeNav() {
+  mobileNav.classList.remove('open');
+  mobileNavBackdrop.classList.remove('open');
+  hamburger.classList.remove('open');
   hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Open navigation menu');
   hamburger.focus();
 }
 
-// Focus trap inside mobile menu
-mobileMenu.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeMenu();
-    return;
-  }
+hamburger.addEventListener('click', () =>
+  mobileNav.classList.contains('open') ? closeNav() : openNav()
+);
+mobileNavClose.addEventListener('click', closeNav);
+mobileNavBackdrop.addEventListener('click', closeNav);
+document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeNav));
+
+// Focus trap + Escape inside mobile menu
+mobileNav.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeNav(); return; }
   if (e.key !== 'Tab') return;
-
-  const focusable = getFocusable(mobileMenu);
+  const focusable = getFocusable(mobileNav);
   if (!focusable.length) return;
-
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
-
-  if (e.shiftKey) {
-    if (document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    }
-  } else {
-    if (document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
-  }
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
 
-hamburger.addEventListener('click', openMenu);
-mobileClose.addEventListener('click', closeMenu);
-document.querySelectorAll('.mobile-link').forEach(link => {
-  link.addEventListener('click', closeMenu);
-});
-
-// Counter animation
-function animateCounter(el) {
+/* ── COUNTER ANIMATION ── */
+function countUp(el) {
   const target = parseInt(el.dataset.count, 10);
-  if (isNaN(target) || target <= 0) return;
-
+  if (!Number.isFinite(target) || target <= 0) return;
   const duration = 1800;
-  const startTime = performance.now();
-
-  function update(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(eased * target);
-    if (progress < 1) requestAnimationFrame(update);
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target);
+    if (p < 1) requestAnimationFrame(tick);
     else el.textContent = target;
   }
-
-  requestAnimationFrame(update);
+  requestAnimationFrame(tick);
 }
 
-// Intersection Observer — scroll reveal
-const observer = new IntersectionObserver((entries) => {
+/* ── INTERSECTION OBSERVER — scroll reveals + counters ── */
+const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     entry.target.classList.add('visible');
-    observer.unobserve(entry.target);
+    revealObs.unobserve(entry.target);
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-// Stats counters (hero stats sit outside .reveal)
-const statsObserver = new IntersectionObserver((entries) => {
+// Stats counters
+const statsObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
-    entry.target.querySelectorAll('.stat-number').forEach(animateCounter);
-    statsObserver.unobserve(entry.target);
+    entry.target.querySelectorAll('[data-count]').forEach(countUp);
+    statsObs.unobserve(entry.target);
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.4 });
 
 const heroStats = document.querySelector('.hero-stats');
-if (heroStats) statsObserver.observe(heroStats);
+if (heroStats) statsObs.observe(heroStats);
+
+/* ── STAGGER CHILDREN (project cards, stack cols) ── */
+document.querySelectorAll('.projects-grid, .stack-grid').forEach(grid => {
+  const items = grid.querySelectorAll('.reveal');
+  items.forEach((item, i) => {
+    item.style.transitionDelay = (i * 80) + 'ms';
+  });
+});
+
+/* ── SMOOTH ACTIVE NAV LINK ── */
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+const sectionObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const id = entry.target.id;
+    navAnchors.forEach(a => {
+      const active = a.getAttribute('href') === '#' + id;
+      a.style.color = active ? 'var(--text-1)' : '';
+    });
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => sectionObs.observe(s));

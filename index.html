@@ -3,27 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S.M. Imran Emon | Senior Software Engineer</title>
-  <meta name="description" content="Senior Software Engineer specializing in full-stack web development and mobile applications. Based in Dhaka, Bangladesh.">
+  <title>S.M. Imran Emon — Senior Software Engineer</title>
+  <meta name="description" content="Senior Software Engineer from Dhaka, Bangladesh. Full-stack web, .NET, React, Flutter, Rails, Django — 10+ years shipping production software.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ── NAVIGATION ── -->
   <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#home" class="nav-logo">IE<span class="accent">.</span></a>
-      <ul class="nav-links">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo" aria-label="Home">
+        <span class="logo-bracket">&lt;</span>IE<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links" role="list">
         <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
+        <li><a href="#stack">Stack</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact" class="nav-hire">Hire Me</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button class="hamburger" id="hamburger"
+              aria-label="Open navigation menu"
+              aria-expanded="false"
+              aria-controls="mobile-nav">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -31,108 +40,146 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-close" id="mobile-close" aria-label="Close menu"><span aria-hidden="true">✕</span></button>
-    <ul>
-      <li><a href="#about" class="mobile-link">About</a></li>
-      <li><a href="#skills" class="mobile-link">Skills</a></li>
-      <li><a href="#experience" class="mobile-link">Experience</a></li>
-      <li><a href="#projects" class="mobile-link">Projects</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
-    </ul>
+  <!-- ── MOBILE MENU ── -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation menu">
+      <span aria-hidden="true">✕</span>
+    </button>
+    <nav aria-label="Mobile navigation">
+      <ul role="list">
+        <li><a href="#about"      class="mobile-link">About</a></li>
+        <li><a href="#stack"      class="mobile-link">Stack</a></li>
+        <li><a href="#projects"   class="mobile-link">Projects</a></li>
+        <li><a href="#experience" class="mobile-link">Experience</a></li>
+        <li><a href="#contact"    class="mobile-link">Contact</a></li>
+      </ul>
+    </nav>
   </div>
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-bg">
-      <div class="grid-overlay"></div>
-    </div>
-    <div class="hero-content">
-      <p class="hero-greeting">Hi, I'm</p>
-      <h1 class="hero-name">Imran Emon</h1>
-      <div class="hero-title" aria-live="polite" aria-atomic="true">
-        <span class="static-text">Senior </span><span class="typed-text" id="typed"></span><span class="cursor" aria-hidden="true">|</span>
+  <!-- ── HERO ── -->
+  <section class="hero" id="home" aria-label="Introduction">
+    <div class="hero-noise" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow--a" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow--b" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <div class="hero-body">
+      <div class="hero-badge">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Available for new opportunities
       </div>
-      <p class="hero-location">
-        <span class="location-dot"></span>
-        Dhaka, Bangladesh
+
+      <p class="hero-eyebrow">Hello, I'm</p>
+      <h1 class="hero-name">
+        <span class="hero-name-line" aria-hidden="true">Imran</span>
+        <span class="hero-name-line hero-name-line--gradient">Emon</span>
+      </h1>
+
+      <div class="hero-role" aria-live="polite" aria-atomic="true">
+        <span class="hero-role-static">Senior </span><span class="hero-role-typed" id="typed-text"></span><span class="hero-role-cursor" aria-hidden="true"></span>
+      </div>
+
+      <p class="hero-tagline">
+        10+ years crafting production software — from enterprise .NET systems<br class="break-md">
+        to cross-platform mobile apps — based in <strong>Dhaka, Bangladesh</strong>.
       </p>
+
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Get In Touch</a>
-        <a href="#projects" class="btn btn-secondary">View My Work</a>
+        <a href="#projects" class="btn btn-primary magnetic">
+          <span>See My Work</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost magnetic">
+          <span>Let's Talk</span>
+        </a>
       </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num-row">
-            <span class="stat-number" data-count="10">0</span><span class="stat-suffix" aria-hidden="true">+</span>
-          </div>
-          <span class="stat-label">Years of Experience</span>
+
+      <div class="hero-stats" aria-label="Career highlights">
+        <div class="hstat">
+          <span class="hstat-num" data-count="10">0</span><span class="hstat-suf" aria-hidden="true">+</span>
+          <span class="hstat-label">Years Experience</span>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <div class="stat-num-row">
-            <span class="stat-number" data-count="50">0</span><span class="stat-suffix" aria-hidden="true">+</span>
-          </div>
-          <span class="stat-label">Projects Delivered</span>
+        <div class="hstat-sep" aria-hidden="true"></div>
+        <div class="hstat">
+          <span class="hstat-num" data-count="50">0</span><span class="hstat-suf" aria-hidden="true">+</span>
+          <span class="hstat-label">Projects Shipped</span>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <div class="stat-num-row">
-            <span class="stat-number" data-count="5">0</span><span class="stat-suffix"></span>
-          </div>
-          <span class="stat-label">Tech Stacks Mastered</span>
+        <div class="hstat-sep" aria-hidden="true"></div>
+        <div class="hstat">
+          <span class="hstat-num" data-count="8">0</span><span class="hstat-suf" aria-hidden="true"></span>
+          <span class="hstat-label">Languages &amp; Frameworks</span>
         </div>
       </div>
     </div>
-    <div class="scroll-indicator">
-      <div class="scroll-line"></div>
-    </div>
+
+    <a href="#about" class="hero-scroll" aria-label="Scroll to About section">
+      <span class="hero-scroll-line" aria-hidden="true"></span>
+      <span class="hero-scroll-label">Scroll</span>
+    </a>
   </section>
 
-  <!-- About Section -->
-  <section class="section about" id="about">
+  <!-- ── ABOUT ── -->
+  <section class="section about" id="about" aria-label="About me">
     <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">01 — About</span>
-        <h2 class="section-title">Building the Web, <span class="gradient-text">One Stack at a Time</span></h2>
-      </div>
+      <div class="section-label reveal" aria-hidden="true">01 / About</div>
       <div class="about-grid">
-        <div class="about-image-wrapper reveal">
-          <div class="about-image-container">
-            <img src="images/me.png" alt="S.M. Imran Emon" class="about-image">
-            <div class="image-badge">
-              <span>Open to</span>
-              <strong>Opportunities</strong>
-            </div>
+        <div class="about-img-col reveal">
+          <div class="about-img-frame">
+            <img src="images/me.png" alt="S.M. Imran Emon, Senior Software Engineer" class="about-img" width="320" height="320" loading="lazy">
+            <div class="about-img-deco" aria-hidden="true"></div>
+          </div>
+          <div class="about-social">
+            <a href="https://github.com/IMRAN104" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" class="social-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/imran-emon-352302b5/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" class="social-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
           </div>
         </div>
-        <div class="about-content reveal">
-          <p class="about-text lead">
-            I'm a seasoned full-stack engineer with over a decade of experience crafting scalable web applications and cross-platform mobile solutions. I thrive at the intersection of clean architecture and elegant user experience.
+
+        <div class="about-text-col reveal">
+          <h2 class="section-title">Building software that <span class="gradient-text">actually matters</span></h2>
+          <p class="about-lead">
+            I'm a full-stack engineer with a decade of experience designing, building, and shipping software across web and mobile. I've worked across the entire stack — React frontends, .NET and Rails APIs, Flutter apps — and I care deeply about clean architecture and developer experience.
           </p>
-          <p class="about-text">
-            My journey spans the full spectrum of software development — from pixel-perfect front-ends with React.js and modern CSS to robust back-ends powered by ASP.NET, Ruby on Rails, and Django. I've designed and shipped production systems that handle real-world complexity at scale.
+          <p class="about-body">
+            My work spans enterprise hospital management systems, AI-powered productivity tools, browser extensions, and cross-platform mobile apps. I'm as comfortable designing a database schema as I am polishing a UI animation.
           </p>
-          <p class="about-text">
-            Beyond code, I'm passionate about mentoring engineers, making thoughtful architectural decisions, and staying ahead of the curve in web and mobile technology.
+          <p class="about-body">
+            Outside of work, I explore new tools obsessively, mentor junior engineers, and occasionally ship side projects that scratch my own itch.
           </p>
-          <div class="about-highlights">
-            <div class="highlight">
-              <span class="highlight-icon">⚡</span>
-              <span>Full-Stack Architecture</span>
+          <div class="about-cards">
+            <div class="about-card">
+              <span class="about-card-icon" aria-hidden="true">🏗️</span>
+              <div>
+                <strong>Architecture-first</strong>
+                <p>I think in systems before I write a line.</p>
+              </div>
             </div>
-            <div class="highlight">
-              <span class="highlight-icon">📱</span>
-              <span>Cross-Platform Mobile</span>
+            <div class="about-card">
+              <span class="about-card-icon" aria-hidden="true">🚢</span>
+              <div>
+                <strong>Ship-focused</strong>
+                <p>Working software over theoretical perfection.</p>
+              </div>
             </div>
-            <div class="highlight">
-              <span class="highlight-icon">🔧</span>
-              <span>System Design</span>
+            <div class="about-card">
+              <span class="about-card-icon" aria-hidden="true">🌱</span>
+              <div>
+                <strong>Always learning</strong>
+                <p>New tech, new patterns, new problems.</p>
+              </div>
             </div>
-            <div class="highlight">
-              <span class="highlight-icon">🚀</span>
-              <span>DevOps &amp; Deployment</span>
+            <div class="about-card">
+              <span class="about-card-icon" aria-hidden="true">🤝</span>
+              <div>
+                <strong>Team player</strong>
+                <p>Code reviews, mentoring, pair programming.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -140,238 +187,353 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section class="section skills" id="skills">
+  <!-- ── STACK ── -->
+  <section class="section stack" id="stack" aria-label="Technology stack">
     <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">02 — Skills</span>
-        <h2 class="section-title">Technologies I <span class="gradient-text">Work With</span></h2>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-category reveal">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">🎨</span>
-            Front-End
+      <div class="section-label reveal" aria-hidden="true">02 / Stack</div>
+      <h2 class="section-title text-center reveal">The tools I <span class="gradient-text">reach for</span></h2>
+      <p class="stack-subtitle reveal">A breadth that spans the whole product — browser to server to phone.</p>
+
+      <div class="stack-grid">
+        <div class="stack-col reveal">
+          <h3 class="stack-col-title">
+            <span class="stack-col-dot dot-indigo" aria-hidden="true"></span>
+            Frontend
           </h3>
-          <div class="skill-tags">
-            <span class="skill-tag featured">React.js</span>
-            <span class="skill-tag featured">JavaScript</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">HTML5</span>
-            <span class="skill-tag">CSS3</span>
-            <span class="skill-tag">Bootstrap</span>
-            <span class="skill-tag">jQuery</span>
-          </div>
+          <ul class="tech-list" role="list">
+            <li class="tech-item tech-item--primary">React.js</li>
+            <li class="tech-item tech-item--primary">TypeScript</li>
+            <li class="tech-item">Angular</li>
+            <li class="tech-item">Blazor</li>
+            <li class="tech-item">JavaScript (ES2022+)</li>
+            <li class="tech-item">HTML5 / CSS3</li>
+            <li class="tech-item">Bootstrap</li>
+          </ul>
         </div>
-        <div class="skill-category reveal">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">⚙️</span>
-            Back-End
+        <div class="stack-col reveal">
+          <h3 class="stack-col-title">
+            <span class="stack-col-dot dot-orange" aria-hidden="true"></span>
+            Backend
           </h3>
-          <div class="skill-tags">
-            <span class="skill-tag featured">ASP.NET MVC</span>
-            <span class="skill-tag featured">Ruby on Rails</span>
-            <span class="skill-tag">C#</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Django</span>
-            <span class="skill-tag">REST APIs</span>
-          </div>
+          <ul class="tech-list" role="list">
+            <li class="tech-item tech-item--primary">ASP.NET / .NET 8</li>
+            <li class="tech-item tech-item--primary">Ruby on Rails</li>
+            <li class="tech-item tech-item--primary">Django / Python</li>
+            <li class="tech-item">Node.js</li>
+            <li class="tech-item">C#</li>
+            <li class="tech-item">REST &amp; GraphQL APIs</li>
+            <li class="tech-item">Laravel / PHP</li>
+          </ul>
         </div>
-        <div class="skill-category reveal">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">📱</span>
+        <div class="stack-col reveal">
+          <h3 class="stack-col-title">
+            <span class="stack-col-dot dot-emerald" aria-hidden="true"></span>
             Mobile
           </h3>
-          <div class="skill-tags">
-            <span class="skill-tag featured">Flutter</span>
-            <span class="skill-tag featured">Dart</span>
-            <span class="skill-tag">Android Native</span>
-            <span class="skill-tag">iOS Native</span>
-          </div>
+          <ul class="tech-list" role="list">
+            <li class="tech-item tech-item--primary">Flutter</li>
+            <li class="tech-item tech-item--primary">Dart</li>
+            <li class="tech-item">Android Native (Java)</li>
+            <li class="tech-item">iOS Native</li>
+          </ul>
         </div>
-        <div class="skill-category reveal">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">🗄️</span>
-            Data &amp; Tools
+        <div class="stack-col reveal">
+          <h3 class="stack-col-title">
+            <span class="stack-col-dot dot-violet" aria-hidden="true"></span>
+            Data &amp; Infra
           </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">PostgreSQL</span>
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">CI/CD</span>
-            <span class="skill-tag">Linux</span>
-          </div>
+          <ul class="tech-list" role="list">
+            <li class="tech-item tech-item--primary">SQL Server / PostgreSQL</li>
+            <li class="tech-item">Azure Service Bus</li>
+            <li class="tech-item">Docker</li>
+            <li class="tech-item">Git / GitHub Actions</li>
+            <li class="tech-item">Linux / Bash</li>
+            <li class="tech-item">Machine Learning (Python)</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Experience Section -->
-  <section class="section experience" id="experience">
+  <!-- ── PROJECTS ── -->
+  <section class="section projects" id="projects" aria-label="Projects">
     <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">03 — Experience</span>
-        <h2 class="section-title">My Professional <span class="gradient-text">Journey</span></h2>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <span class="timeline-period">2020 — Present</span>
-            <h3 class="timeline-role">Senior Software Engineer</h3>
-            <p class="timeline-company">Full-Stack Web &amp; Mobile Solutions</p>
-            <ul class="timeline-bullets">
-              <li>Architected scalable web applications using React.js and ASP.NET MVC serving thousands of concurrent users</li>
-              <li>Led cross-functional engineering teams to deliver complex projects on time and within scope</li>
-              <li>Championed code quality standards and introduced automated testing practices across projects</li>
-              <li>Built cross-platform mobile apps with Flutter deployed to both iOS and Android app stores</li>
-            </ul>
-            <div class="timeline-tech">
-              <span>React.js</span><span>ASP.NET MVC</span><span>Flutter</span><span>SQL Server</span>
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <span class="timeline-period">2017 — 2020</span>
-            <h3 class="timeline-role">Full-Stack Developer</h3>
-            <p class="timeline-company">Web Applications &amp; API Development</p>
-            <ul class="timeline-bullets">
-              <li>Developed RESTful APIs with Ruby on Rails and Django powering multiple production client apps</li>
-              <li>Built responsive, accessible front-ends with JavaScript and React.js</li>
-              <li>Implemented CI/CD pipelines that reduced deployment time by 60%</li>
-            </ul>
-            <div class="timeline-tech">
-              <span>Ruby on Rails</span><span>Django</span><span>JavaScript</span><span>PostgreSQL</span>
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-marker"></div>
-          <div class="timeline-card">
-            <span class="timeline-period">2015 — 2017</span>
-            <h3 class="timeline-role">Web Developer</h3>
-            <p class="timeline-company">Frontend &amp; Backend Web Development</p>
-            <ul class="timeline-bullets">
-              <li>Built dynamic web applications using C# and ASP.NET MVC for enterprise clients</li>
-              <li>Crafted interactive UIs with jQuery, Bootstrap, and custom CSS</li>
-              <li>Collaborated with design teams to deliver pixel-perfect implementations from mockups</li>
-            </ul>
-            <div class="timeline-tech">
-              <span>C#</span><span>ASP.NET</span><span>jQuery</span><span>Bootstrap</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="section-label reveal" aria-hidden="true">03 / Projects</div>
+      <h2 class="section-title text-center reveal">Things I've <span class="gradient-text">shipped</span></h2>
+      <p class="projects-subtitle reveal">Real repos, real code. Browse them all on <a href="https://github.com/IMRAN104" target="_blank" rel="noopener noreferrer">GitHub →</a></p>
 
-  <!-- Projects Section -->
-  <section class="section projects" id="projects">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">04 — Projects</span>
-        <h2 class="section-title">Things I've <span class="gradient-text">Built</span></h2>
-      </div>
       <div class="projects-grid">
-        <div class="project-card reveal">
-          <div class="project-header">
-            <span class="project-icon">🌐</span>
-            <div class="project-links">
-              <a href="https://github.com/IMRAN104" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              </a>
+
+        <!-- FlowCanvas -->
+        <article class="pcard pcard--featured reveal" aria-label="FlowCanvas project">
+          <div class="pcard-header" style="--card-a:#6366f1;--card-b:#8b5cf6;">
+            <span class="pcard-feat-badge">Featured</span>
+            <div class="pcard-header-glow" aria-hidden="true"></div>
+            <h3 class="pcard-title">FlowCanvas</h3>
+            <p class="pcard-subtitle">Mermaid Diagrams Unlocked</p>
+          </div>
+          <div class="pcard-body">
+            <p class="pcard-desc">A TypeScript-powered diagramming tool that makes creating Mermaid diagrams visual and intuitive — bridging the gap between code-based diagrams and drag-and-drop editors.</p>
+            <div class="pcard-tags" aria-label="Technologies">
+              <span class="ptag">TypeScript</span>
+              <span class="ptag">Mermaid.js</span>
+              <span class="ptag">Frontend</span>
             </div>
           </div>
-          <h3 class="project-title">Full-Stack Web Application</h3>
-          <p class="project-desc">A production-ready web application built with React.js frontend and ASP.NET MVC backend, featuring real-time data, role-based auth, and a fully responsive interface.</p>
-          <div class="project-tech">
-            <span>React.js</span><span>ASP.NET MVC</span><span>SQL Server</span>
+          <div class="pcard-footer">
+            <a href="https://github.com/IMRAN104/FlowCanvas" target="_blank" rel="noopener noreferrer" class="pcard-link" aria-label="View FlowCanvas on GitHub">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
           </div>
-        </div>
-        <div class="project-card reveal">
-          <div class="project-header">
-            <span class="project-icon">📱</span>
-            <div class="project-links">
-              <a href="https://github.com/IMRAN104" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              </a>
+        </article>
+
+        <!-- HospitalManagementSystem -->
+        <article class="pcard reveal" aria-label="Hospital Management System project">
+          <div class="pcard-header" style="--card-a:#0ea5e9;--card-b:#06b6d4;">
+            <div class="pcard-header-glow" aria-hidden="true"></div>
+            <h3 class="pcard-title">Hospital Management</h3>
+            <p class="pcard-subtitle">Full-stack enterprise system</p>
+          </div>
+          <div class="pcard-body">
+            <p class="pcard-desc">A comprehensive TypeScript-based hospital management system covering patient records, appointments, staff management, and reporting — built for real operational use.</p>
+            <div class="pcard-tags" aria-label="Technologies">
+              <span class="ptag">TypeScript</span>
+              <span class="ptag">React</span>
+              <span class="ptag">Enterprise</span>
             </div>
           </div>
-          <h3 class="project-title">Cross-Platform Mobile App</h3>
-          <p class="project-desc">A Flutter application deployed to both iOS and Android platforms, featuring native performance, offline-first capabilities, and polished Material Design UI.</p>
-          <div class="project-tech">
-            <span>Flutter</span><span>Dart</span><span>Firebase</span>
+          <div class="pcard-footer">
+            <a href="https://github.com/IMRAN104/HospitalManagementSystem" target="_blank" rel="noopener noreferrer" class="pcard-link" aria-label="View Hospital Management System on GitHub">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
           </div>
-        </div>
-        <div class="project-card reveal">
-          <div class="project-header">
-            <span class="project-icon">🔗</span>
-            <div class="project-links">
-              <a href="https://github.com/IMRAN104" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              </a>
+        </article>
+
+        <!-- YouTube Shorts Summary -->
+        <article class="pcard reveal" aria-label="YouTube Shorts Summary project">
+          <div class="pcard-header" style="--card-a:#f97316;--card-b:#ef4444;">
+            <div class="pcard-header-glow" aria-hidden="true"></div>
+            <h3 class="pcard-title">YT Shorts Summary</h3>
+            <p class="pcard-subtitle">AI-powered video intelligence</p>
+          </div>
+          <div class="pcard-body">
+            <p class="pcard-desc">A TypeScript tool that automatically summarises YouTube Shorts using AI — saving time by extracting key insights from short-form video content without watching them.</p>
+            <div class="pcard-tags" aria-label="Technologies">
+              <span class="ptag">TypeScript</span>
+              <span class="ptag">AI / LLM</span>
+              <span class="ptag">YouTube API</span>
             </div>
           </div>
-          <h3 class="project-title">RESTful API Platform</h3>
-          <p class="project-desc">A scalable REST API built with Ruby on Rails and Django, powering multiple client applications with JWT auth, rate limiting, and auto-generated Swagger docs.</p>
-          <div class="project-tech">
-            <span>Ruby on Rails</span><span>Django</span><span>PostgreSQL</span>
+          <div class="pcard-footer">
+            <a href="https://github.com/IMRAN104/youtube-shorts-summary" target="_blank" rel="noopener noreferrer" class="pcard-link" aria-label="View YouTube Shorts Summary on GitHub">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="projects-cta reveal">
+        </article>
+
+        <!-- learn_quran -->
+        <article class="pcard reveal" aria-label="Learn Quran Flutter app project">
+          <div class="pcard-header" style="--card-a:#10b981;--card-b:#059669;">
+            <div class="pcard-header-glow" aria-hidden="true"></div>
+            <h3 class="pcard-title">Learn Quran</h3>
+            <p class="pcard-subtitle">Cross-platform mobile app</p>
+          </div>
+          <div class="pcard-body">
+            <p class="pcard-desc">A Flutter mobile application for iOS and Android that provides Quran reading, audio recitation, and learning features — built with native performance using Dart.</p>
+            <div class="pcard-tags" aria-label="Technologies">
+              <span class="ptag">Flutter</span>
+              <span class="ptag">Dart</span>
+              <span class="ptag">iOS &amp; Android</span>
+            </div>
+          </div>
+          <div class="pcard-footer">
+            <a href="https://github.com/IMRAN104/learn_quran" target="_blank" rel="noopener noreferrer" class="pcard-link" aria-label="View Learn Quran on GitHub">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- BanglishWriter -->
+        <article class="pcard reveal" aria-label="BanglishWriter project">
+          <div class="pcard-header" style="--card-a:#a855f7;--card-b:#ec4899;">
+            <div class="pcard-header-glow" aria-hidden="true"></div>
+            <h3 class="pcard-title">BanglishWriter</h3>
+            <p class="pcard-subtitle">Bilingual typing tool</p>
+          </div>
+          <div class="pcard-body">
+            <p class="pcard-desc">A C# desktop tool that enables seamless Banglish (Bengali written in Latin script) typing — solving a real daily-use problem for millions of Bengali-speaking users.</p>
+            <div class="pcard-tags" aria-label="Technologies">
+              <span class="ptag">C#</span>
+              <span class="ptag">.NET</span>
+              <span class="ptag">Desktop</span>
+            </div>
+          </div>
+          <div class="pcard-footer">
+            <a href="https://github.com/IMRAN104/BanglishWriter" target="_blank" rel="noopener noreferrer" class="pcard-link" aria-label="View BanglishWriter on GitHub">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- ReplacerChromeExtension -->
+        <article class="pcard reveal" aria-label="Replacer Chrome Extension project">
+          <div class="pcard-header" style="--card-a:#f59e0b;--card-b:#f97316;">
+            <div class="pcard-header-glow" aria-hidden="true"></div>
+            <h3 class="pcard-title">Replacer Extension</h3>
+            <p class="pcard-subtitle">Chrome browser extension</p>
+          </div>
+          <div class="pcard-body">
+            <p class="pcard-desc">A Chrome extension for on-page text replacement — useful for localisation testing, redacting sensitive info, or just having fun with the web. Clean vanilla JS implementation.</p>
+            <div class="pcard-tags" aria-label="Technologies">
+              <span class="ptag">JavaScript</span>
+              <span class="ptag">Chrome API</span>
+              <span class="ptag">Extension</span>
+            </div>
+          </div>
+          <div class="pcard-footer">
+            <a href="https://github.com/IMRAN104/ReplacerChromeExtension" target="_blank" rel="noopener noreferrer" class="pcard-link" aria-label="View Replacer Extension on GitHub">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+      </div><!-- /projects-grid -->
+
+      <div class="projects-more reveal">
         <a href="https://github.com/IMRAN104" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-          View All Projects on GitHub →
+          View all 50+ repos on GitHub
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="section contact" id="contact">
+  <!-- ── EXPERIENCE ── -->
+  <section class="section experience" id="experience" aria-label="Work experience">
     <div class="container">
-      <div class="contact-wrapper">
-        <div class="section-header reveal">
-          <span class="section-tag">05 — Contact</span>
-          <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
-          <p class="contact-desc">Whether you have a project in mind, want to collaborate, or just want to say hello — my inbox is always open.</p>
+      <div class="section-label reveal" aria-hidden="true">04 / Experience</div>
+      <h2 class="section-title text-center reveal">A decade of <span class="gradient-text">building</span></h2>
+
+      <div class="timeline" role="list">
+
+        <div class="tl-item reveal" role="listitem">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-connector" aria-hidden="true"></div>
+          <div class="tl-card">
+            <div class="tl-meta">
+              <span class="tl-period">2020 — Present</span>
+              <span class="tl-badge tl-badge--active">Current</span>
+            </div>
+            <h3 class="tl-role">Senior Software Engineer</h3>
+            <p class="tl-org">Full-Stack Web &amp; Mobile Solutions</p>
+            <ul class="tl-bullets">
+              <li>Architected React + ASP.NET MVC systems serving thousands of concurrent users</li>
+              <li>Led cross-functional teams through end-to-end product delivery</li>
+              <li>Introduced automated testing pipelines, cutting production bugs by ~40%</li>
+              <li>Shipped Flutter mobile apps to both App Store and Google Play</li>
+              <li>Integrated Azure Service Bus for reliable async messaging between microservices</li>
+            </ul>
+            <div class="tl-tags" aria-label="Technologies used">
+              <span>React</span><span>ASP.NET</span><span>Flutter</span><span>Azure</span><span>SQL Server</span>
+            </div>
+          </div>
         </div>
-        <div class="contact-links reveal">
-          <a href="https://www.linkedin.com/in/imran-emon-352302b5/" target="_blank" rel="noopener noreferrer" class="contact-card">
-            <div class="contact-card-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+
+        <div class="tl-item reveal" role="listitem">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-connector" aria-hidden="true"></div>
+          <div class="tl-card">
+            <div class="tl-meta">
+              <span class="tl-period">2017 — 2020</span>
             </div>
-            <div class="contact-card-info">
-              <span class="contact-card-label">LinkedIn</span>
-              <span class="contact-card-value">imran-emon-352302b5</span>
+            <h3 class="tl-role">Full-Stack Developer</h3>
+            <p class="tl-org">Web Applications &amp; API Development</p>
+            <ul class="tl-bullets">
+              <li>Built RESTful APIs in Ruby on Rails and Django powering multiple client apps</li>
+              <li>Developed responsive SPAs with React and Angular</li>
+              <li>Set up CI/CD pipelines reducing deployment cycles from days to minutes</li>
+              <li>Contributed to data migration tooling for legacy system transitions</li>
+            </ul>
+            <div class="tl-tags" aria-label="Technologies used">
+              <span>Rails</span><span>Django</span><span>Angular</span><span>PostgreSQL</span>
             </div>
-            <span class="contact-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="tl-item reveal" role="listitem">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-card">
+            <div class="tl-meta">
+              <span class="tl-period">2015 — 2017</span>
+            </div>
+            <h3 class="tl-role">Web Developer</h3>
+            <p class="tl-org">Frontend &amp; Backend Engineering</p>
+            <ul class="tl-bullets">
+              <li>Built enterprise web applications in C# and ASP.NET MVC</li>
+              <li>Crafted pixel-perfect UIs with jQuery, Bootstrap, and custom CSS</li>
+              <li>Started exploring mobile with Android Native (Java)</li>
+            </ul>
+            <div class="tl-tags" aria-label="Technologies used">
+              <span>C#</span><span>ASP.NET</span><span>jQuery</span><span>Bootstrap</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /timeline -->
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="section contact" id="contact" aria-label="Contact">
+    <div class="container">
+      <div class="contact-box reveal">
+        <div class="contact-box-glow" aria-hidden="true"></div>
+        <p class="contact-eyebrow">05 / Let's work together</p>
+        <h2 class="contact-heading">Got a project<br><span class="gradient-text">in mind?</span></h2>
+        <p class="contact-body">
+          Whether it's a new product, a complex backend system, a mobile app, or just a chat about tech — I'm always open to interesting conversations and opportunities.
+        </p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/imran-emon-352302b5/" target="_blank" rel="noopener noreferrer" class="contact-link magnetic">
+            <div class="contact-link-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div>
+              <span class="contact-link-label">LinkedIn</span>
+              <span class="contact-link-val">imran-emon-352302b5</span>
+            </div>
+            <svg class="contact-link-arrow" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="https://github.com/IMRAN104" target="_blank" rel="noopener noreferrer" class="contact-card">
-            <div class="contact-card-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <a href="https://github.com/IMRAN104" target="_blank" rel="noopener noreferrer" class="contact-link magnetic">
+            <div class="contact-link-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             </div>
-            <div class="contact-card-info">
-              <span class="contact-card-label">GitHub</span>
-              <span class="contact-card-value">IMRAN104</span>
+            <div>
+              <span class="contact-link-label">GitHub</span>
+              <span class="contact-link-val">IMRAN104</span>
             </div>
-            <span class="contact-arrow">→</span>
+            <svg class="contact-link-arrow" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer" aria-label="Site footer">
     <div class="container">
       <div class="footer-inner">
-        <span class="footer-logo">IE<span class="accent">.</span></span>
-        <p class="footer-text">Designed &amp; built by S.M. Imran Emon</p>
-        <p class="footer-copy">© 2026 Imran Emon. All rights reserved.</p>
+        <span class="footer-logo" aria-label="IE logo">
+          <span class="logo-bracket" aria-hidden="true">&lt;</span>IE<span class="logo-bracket" aria-hidden="true">/&gt;</span>
+        </span>
+        <p class="footer-copy">© 2026 S.M. Imran Emon — Dhaka, Bangladesh</p>
+        <p class="footer-built">Built with HTML, CSS &amp; vanilla JS</p>
       </div>
     </div>
   </footer>
